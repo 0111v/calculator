@@ -1,6 +1,6 @@
 let number1
 let number2
-let currentOperator
+let currentOperator = ''
 let displayNumber = ''
 
 function add (number1, number2) {
@@ -43,16 +43,26 @@ function addNumber (number) {
 }
 
 function getOperator(operator) {
-  number1 = displayNumber
-  currentOperator = operator
-  displayNumber = ''
-  console.log(number1)
-  console.log(operator)
+    if (currentOperator === '') {
+      number1 = displayNumber
+      currentOperator = operator
+      displayNumber = ''
+      console.log(currentOperator)
+  } else if (currentOperator !== '') {
+    number2 = displayNumber
+    const result = operate(number1, number2, currentOperator)
+    number1 = result
+    displayNumber = ''
+    currentOperator = operator
+    console.log(result)
+  }
 }
 
 function getResult() {
   number2 = displayNumber
   const result = operate(number1, number2, currentOperator)
   console.log(result)
+  number1 = result
+  currentOperator = ''
 }
 
